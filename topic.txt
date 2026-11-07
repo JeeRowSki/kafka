@@ -1,0 +1,19 @@
+eac461ac69dc   apache/kafka:3.9.1              "/__cacert_entrypoin…"   23 minutes ago   Up 18 minutes   9092/tcp                   kafka-1
+root@kafktrain:/opt/kafka# docker exec kafka-0 \
+  /opt/kafka/bin/kafka-topics.sh \
+  --create \
+  --topic practice2-topic \
+  --bootstrap-server kafka-0:9092 \
+  --partitions 3 \
+  --replication-factor 2
+Created topic practice2-topic.
+root@kafktrain:/opt/kafka# docker exec kafka-0 \
+  /opt/kafka/bin/kafka-topics.sh \
+  --describe \
+  --topic practice2-topic \
+  --bootstrap-server kafka-0:9092
+Topic: practice2-topic  TopicId: 9U4ZnrEDTIeFAclNpaRj2g PartitionCount: 3       ReplicationFactor: 2    Configs: min.insync.replicas=2
+        Topic: practice2-topic  Partition: 0    Leader: 1       Replicas: 1,2   Isr: 1,2        Elr:    LastKnownElr:
+        Topic: practice2-topic  Partition: 1    Leader: 2       Replicas: 2,0   Isr: 2,0        Elr:    LastKnownElr:
+        Topic: practice2-topic  Partition: 2    Leader: 0       Replicas: 0,1   Isr: 0,1        Elr:    LastKnownElr:
+
