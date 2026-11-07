@@ -1,0 +1,28 @@
+name: kafka-practice2
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    restart: unless-stopped
+
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: "kafka-0:9092,kafka-1:9092,kafka-2:9092"
+      KAFKA_TOPIC: "practice2-topic"
+      PYTHONUNBUFFERED: "1"
+
+    networks:
+      - kafka-net
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "3"
+
+networks:
+  kafka-net:
+    external: true
+    name: kafka-lab_kafka-net
