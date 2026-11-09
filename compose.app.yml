@@ -8,6 +8,9 @@ services:
 
     restart: unless-stopped
 
+    deploy:
+      replicas: 2
+
     environment:
       KAFKA_BOOTSTRAP_SERVERS: "kafka-0:9092,kafka-1:9092,kafka-2:9092"
       KAFKA_TOPIC: "practice2-topic"
